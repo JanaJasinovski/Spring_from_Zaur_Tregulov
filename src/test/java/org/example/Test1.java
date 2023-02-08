@@ -14,13 +14,14 @@ public class Test1 {
         UniLibrary uniLibrary = context.getBean("uniLibrary", UniLibrary.class);
 //        uniLibrary.getBook("Преступление и название");
         Book book = context.getBean("book", Book.class);
-        uniLibrary.getBook();
-        uniLibrary.returnBook();
-        uniLibrary.getMagazine();
-        uniLibrary.addBook();
+//        uniLibrary.getBook();
+//        uniLibrary.returnBook();
+//        uniLibrary.getMagazine();
+        uniLibrary.addBook("Jana", book);
+        uniLibrary.addMagazine();
 
-        SchoolLibrary schoolLibrary = context.getBean("schoolLibrary", SchoolLibrary.class);
-        schoolLibrary.getBook();
+//        SchoolLibrary schoolLibrary = context.getBean("schoolLibrary", SchoolLibrary.class);
+//        schoolLibrary.getBook();
 
         context.close();
     }
