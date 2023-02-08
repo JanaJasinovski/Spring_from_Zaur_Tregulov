@@ -9,7 +9,9 @@
 
     <bean id="myPet"
           class="org.example.Dog"
-          scope="prototype">
+          scope="prototype"
+          init-method="init"
+          destroy-method="destroy">
     </bean>
 
 </beans>
