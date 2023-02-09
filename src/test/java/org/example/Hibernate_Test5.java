@@ -16,8 +16,10 @@ public class Hibernate_Test5 {
 
             session.beginTransaction();
 
-            Employee employee = session.get(Employee.class, 1);
-            session.delete(employee);
+//            Employee employee = session.get(Employee.class, 1);
+//            session.delete(employee);
+
+            session.createQuery("delete Employee where name='Masha'").executeUpdate();
 
             session.getTransaction().commit();
 
