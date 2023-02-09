@@ -1,12 +1,12 @@
-package hibernate_one_to_many_bi.entity;
+package hibernate_one_to_many_uni.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -29,9 +29,8 @@ public class Department {
     @Column( name = "min_salary" )
     private int minSalary;
 
-    @OneToMany( cascade = CascadeType.ALL, //{CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH,  CascadeType.MERGE}
-            mappedBy = "department",
-            fetch = FetchType.LAZY )
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
     private List<Employee> employees;
 
     public Department() {
@@ -44,12 +43,11 @@ public class Department {
     }
 
     public void addEmployeeToDepartment(Employee employee) {
-        if (employees == null) {
+        if(employees == null) {
             employees = new ArrayList<>();
         }
 
         employees.add(employee);
-        employee.setDepartment(this);
     }
 
     public int getId() {

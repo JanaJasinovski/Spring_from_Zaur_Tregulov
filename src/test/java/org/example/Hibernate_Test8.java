@@ -18,24 +18,32 @@ public class Hibernate_Test8 {
         try {
 
             session = factory.getCurrentSession();
-//            Department department = new Department("IT", 300, 1200);
+//            Department department = new Department("Sales", 800, 1500);
 //            Employee employee1 = new Employee("Yana", "Yasinovski", 800);
 //            Employee employee2 = new Employee("Denis", "Teterukov", 100_000);
+//            Employee employee3 = new Employee("Julia", "Kravchinskaya", 1200);
 //
 //            department.addEmployeeToDepartment(employee1);
 //            department.addEmployeeToDepartment(employee2);
+//            department.addEmployeeToDepartment(employee3);
 
             session.beginTransaction();
 
-//            session.save(department);
-
+            System.out.println("Get department");
             Department department = session.get(Department.class, 1);
-//            System.out.println(department);
-            System.out.println(department.getEmployees());
 
-            session.delete(department);
+            System.out.println("Get department");
+            System.out.println(department);
+
+            System.out.println("Подгрузим наших оаботников");
+            department.getEmployees().get(0);
 
             session.getTransaction().commit();
+
+            System.out.println("Show employees of the department");
+            System.out.println(department.getEmployees());
+//            session.save(department);
+
 
             System.out.println("Done");
 
