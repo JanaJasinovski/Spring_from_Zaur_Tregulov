@@ -9,17 +9,20 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class NewLoggingAspect {
 
-    @Around("execution(public String returnBook())")
+    @Around( "execution(public String returnBook())" )
     public Object aroundReturnBookLoggingAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         System.out.println("aroundReturnBookLoggingAdvice: в библиотеку пытаются вернуть книгу");
+        Object proceed = null;
+        try {
+            proceed = proceedingJoinPoint.proceed();
 
-        long begin = System.currentTimeMillis();
-        Object proceed = proceedingJoinPoint.proceed();
-        long end = System.currentTimeMillis();
+        } catch (Exception e) {
+            System.out.println("aroundReturnBookLoggingAdvice: было поймано исключение: " + e.getMessage());
+            throw e;
+//            proceed = "неизвестное название книги";
+        }
 
         System.out.println("aroundReturnBookLoggingAdvice: в библиотеку успешно вернули книгу");
-        System.out.println("aroundReturnBookLoggingAdvice: метод returnBook выполнил работу за " + (end - begin) +
-                " миллисекунд");
         return proceed;
     }
 }
